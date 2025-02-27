@@ -16,6 +16,8 @@
   "author": "Nasenboi",
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "simpl-schema": "^3.4.6",
     "xmlbuilder": "^15.1.1"

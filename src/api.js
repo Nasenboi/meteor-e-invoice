@@ -1,12 +1,13 @@
-import {EInvoiceSchema, InvoiceLine, TaxSubtotal, PartyTaxScheme, AdditionalItemProperty} from "./eInvoices";
+import {EInvoiceSchema, InvoiceLine, TaxSubtotal, PartyTaxScheme, AdditionalItemProperty} from "./e-invoice-schema";
 import xmlbuilder from "xmlbuilder";
 
-// function to convert eInvoice object to XML
-export async function eInvoiceToXml(eInvoice) {
-  try {
-    // validate
-    EInvoiceSchema.validate(eInvoice);
+export const EINVOICE_CUSTUMIZATION_ID =
+  "urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_3.0";
+export const EINVOICE_PROFILE_ID = "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0";
 
+// function to convert eInvoice object to XML
+export function eInvoiceToXml(eInvoice) {
+  try {
     const xml = xmlbuilder
       .create("ubl:Invoice", {
         version: "1.0",
@@ -22,6 +23,9 @@ export async function eInvoiceToXml(eInvoice) {
     const createElement = (parent, object) => {
       for (const key of Object.keys(object)) {
         const field = object[key];
+        if (!field) {
+          continue;
+        }
         const value = field.value;
         const xml_name = field.xml_name;
         let element;
@@ -33,7 +37,7 @@ export async function eInvoiceToXml(eInvoice) {
             element = parent.ele(xml_name, Math.round(value * 100) / 100); // Round to 2 decimal places
           } else if (value instanceof Date) {
             element = parent.ele(xml_name, value.toISOString().slice(0, 10)); // ISO date without time
-          } else if (Array.isArray(value) && value.length > 0) {
+          } else if (Array.isArray(value) && value?.length > 0) {
             value.forEach((item) => {
               let arrayElement = parent.ele(xml_name);
               if (typeof item === "object") {
@@ -41,7 +45,7 @@ export async function eInvoiceToXml(eInvoice) {
               } else if (item && item !== "") {
                 arrayElement.ele(xml_name, item);
               }
-              if (!arrayElement.children.length) {
+              if (!arrayElement.children?.length) {
                 arrayElement.remove();
               }
             });
@@ -50,13 +54,13 @@ export async function eInvoiceToXml(eInvoice) {
             createElement(element, value);
 
             // Remove the objectParent if no children were added
-            if (!element.children.length) {
+            if (!element.children?.length) {
               element.remove();
               element = null;
             }
           }
 
-          if (field.attributes.length > 0 && element) {
+          if (field.attributes?.length > 0 && element) {
             field.attributes.forEach((attr) => {
               if (attr.value && attr.value !== "") {
                 element.att(attr.name, attr.value);
@@ -69,12 +73,10 @@ export async function eInvoiceToXml(eInvoice) {
 
     createElement(xml, eInvoice);
 
+    const xmlString = xml.end({pretty: true});
+
     // Return results based on validation outcome
-    if (result.valid) {
-      return {success: true, xml: xmlString};
-    } else {
-      return {success: false, error: result.errors};
-    }
+    return {success: true, xml: xmlString};
   } catch (error) {
     return {success: false, error};
   }
