@@ -1,0 +1,23 @@
+{
+  "name": "meteor-e-invoice",
+  "version": "0.0.0",
+  "description": "create e-invoices for your meteor application",
+  "main": "src/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "meteor-e-invoice"
+  },
+  "author": "Nasenboi",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "simpl-schema": "^3.4.6",
+    "xmlbuilder": "^15.1.1"
+  }
+}
