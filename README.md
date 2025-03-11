@@ -27,9 +27,6 @@ import { EInvoice, addXmlData } from 'meteor/e-invoice';
 ```javascript
 // similar to this
 var invoice = EInvoiceSchema.clean({});
-
-// add xml data to the invoice object
-invoice = addXmlData("EInvoiceSchema", invoice);
 ```
 
 ### Convert it to an XML string

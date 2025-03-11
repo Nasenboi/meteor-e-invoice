@@ -8,10 +8,9 @@ describe("Validate exampleInvoice", () => {
   it("should validate exampleInvoice", () => {
     EInvoiceSchema.validate(exampleInvoice);
     var invoice = EInvoiceSchema.clean(exampleInvoice);
-    invoice = addXmlData("EInvoiceSchema", invoice);
 
     const xml = eInvoiceToXml(invoice).xml;
-    
+
     // store under tests/text-objects/example-invoice.xml
     const path = "./tests/test-objects/example-invoice.xml";
     fs.writeFileSync(path, xml);
