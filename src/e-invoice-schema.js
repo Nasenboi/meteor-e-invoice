@@ -63,6 +63,10 @@ const PartyLegalEntity = new SimpleSchema({
     type: String,
     optional: true,
   },
+  company_legal_form: {
+    type: String,
+    optional: true,
+  },
 });
 
 const TaxScheme = new SimpleSchema({
@@ -226,6 +230,7 @@ const LegalMonetaryTotal = new SimpleSchema({
   },
   prepaid_amount: {
     type: Number,
+    optional: true,
     defaultValue: 0,
   },
   payable_amount: {
@@ -267,6 +272,11 @@ export const TaxSubtotal = new SimpleSchema({
     type: TaxCategory,
     defaultValue: TaxCategory.clean({}),
   },
+  currency_id: {
+    type: String,
+    defaultValue: "EUR",
+    allowedValues: INVOICE_CURRENCY_CODES,
+  },
 });
 
 const TaxTotal = new SimpleSchema({
@@ -281,6 +291,11 @@ const TaxTotal = new SimpleSchema({
   "tax_subtotal.$": {
     type: TaxSubtotal,
   },
+  currency_id: {
+    type: String,
+    defaultValue: "EUR",
+    allowedValues: INVOICE_CURRENCY_CODES,
+  },
 });
 
 export const AdditionalItemProperty = new SimpleSchema({
@@ -289,6 +304,25 @@ export const AdditionalItemProperty = new SimpleSchema({
     defaultValue: "",
   },
   value: {
+    type: String,
+    defaultValue: "",
+  },
+});
+
+const SellersItemIdentification = new SimpleSchema({
+  id: {
+    type: String,
+    defaultValue: "",
+  },
+});
+
+
+const CommodityClassification = new SimpleSchema({
+  item_classification_code: {
+    type: String,
+    defaultValue: "", 
+  },
+  list_id: {
     type: String,
     defaultValue: "",
   },
@@ -303,7 +337,15 @@ const Item = new SimpleSchema({
     type: String,
     optional: true,
   },
-  classified_tax_total: {
+  sellers_item_identification: {
+    type: SellersItemIdentification,
+    optional: true,
+  },
+  commodity_classification: {
+    type: CommodityClassification,
+    optional: true,
+  },
+  classified_tax_category: {
     type: TaxCategory,
     optional: true,
   },
@@ -321,6 +363,23 @@ const Price = new SimpleSchema({
     type: Number,
     defaultValue: 0,
   },
+  currency_id: {
+    type: String,
+    defaultValue: "EUR",
+    allowedValues: INVOICE_CURRENCY_CODES,
+  },
+});
+
+const InvoicePeriod = new SimpleSchema({
+  start_date: {type: SimpleSchema.oneOf(Date, String)},
+  end_date: {type: SimpleSchema.oneOf(Date, String)},
+});
+
+const OrderLineReference = new SimpleSchema({
+  line_id: {
+    type: String,
+    defaultValue: "",
+  },
 });
 
 const SubInvoiceLine = new SimpleSchema({
@@ -335,6 +394,22 @@ const SubInvoiceLine = new SimpleSchema({
   line_extension_amount: {
     type: Number,
     defaultValue: 0,
+  },
+  note: {
+    type: String,
+    optional: true,
+  },
+  invoice_period: {
+    type: InvoicePeriod,
+    optional: true,
+  },
+  order_line_reference: {
+    type: OrderLineReference,
+    optional: true,
+  },
+  unit_code: {
+    type: String,
+    defaultValue: "XPP",
   },
   item: {
     type: Item,
@@ -390,7 +465,7 @@ export const EInvoiceSchema = new SimpleSchema({
     allowedValues: INVOICE_TYPE_CODES,
     defaultValue: "380",
   },
-  invoice_currency_code: {
+  document_currency_code: {
     type: String,
     allowedValues: INVOICE_CURRENCY_CODES,
     defaultValue: "",
@@ -406,6 +481,7 @@ export const EInvoiceSchema = new SimpleSchema({
 
   order_reference: {
     type: OrderReference,
+    optional: true,
     defaultValue: OrderReference.clean({}),
   },
   accounting_supplier_party: {
