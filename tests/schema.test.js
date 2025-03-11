@@ -1,7 +1,6 @@
 import {EInvoiceSchema} from "../src/e-invoice-schema";
-import addXmlData from "../src/xml-parser";
 import exampleInvoice from "./test-objects/example-invoice.json";
-import { eInvoiceToXml } from "../src/api";
+import { eInvoiceToXml, einvoiceToZugferd } from "../src/api";
 import fs from "fs";
 
 describe("Validate exampleInvoice", () => {
@@ -14,5 +13,16 @@ describe("Validate exampleInvoice", () => {
     // store under tests/text-objects/example-invoice.xml
     const path = "./tests/test-objects/example-invoice.xml";
     fs.writeFileSync(path, xml);
+  });
+});
+
+describe("Zugferd", () => {
+  it("should create pdf", async () => {
+    EInvoiceSchema.validate(exampleInvoice);
+    var invoice = EInvoiceSchema.clean(exampleInvoice);
+
+    const pdfBuffer = await einvoiceToZugferd(invoice);
+    const path = "./tests/test-objects/example-invoice.pdf";
+    fs.writeFileSync(path, pdfBuffer);
   });
 });
