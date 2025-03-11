@@ -139,6 +139,7 @@ dist
 
 # test files
 tests/test-objects/*.xml
+tests/test-objects/*.pdf
 
 # macOS
 .DS_Store
