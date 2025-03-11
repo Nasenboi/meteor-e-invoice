@@ -13,6 +13,7 @@ Here is a link to the specification I have used to create this package:
 If you want to use the package you can do it like this:
 ### Installation
 Install the package via npm:
+**Not implemented yet!**
 ```bash
 npm install meteor-e-invoice
 ```
