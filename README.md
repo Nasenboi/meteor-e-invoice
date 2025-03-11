@@ -41,6 +41,11 @@ const xmlString = result.xml;
 
 # Credits
 
+## Code Snippets
+|name|origin|
+|---|---|
+|src/api embedXMLInPDF |https://github.com/BenediktCleff/zugferd-generator|
+
 ## Example E-Invoices
 |name|origin|
 |---|---|
