@@ -27,3 +27,10 @@ import { EInvoice } from 'meteor/e-invoice';
 
 
 ### Convert it to an XML string
+
+# Credits
+
+## Example E-Invoices
+|name|origin|
+|---|---|
+|example-invoice.json|https://github.com/jcthiele/OpenXRechnungToolbox/|
