@@ -33,4 +33,4 @@ import { EInvoice } from 'meteor/e-invoice';
 ## Example E-Invoices
 |name|origin|
 |---|---|
-|example-invoice.json|https://github.com/jcthiele/OpenXRechnungToolbox/|
+|[example-invoice.json](https://github.com/Nasenboi/meteor-e-invoice/blob/main/tests/test-objects/example-invoice.json)|https://github.com/jcthiele/OpenXRechnungToolbox/|
