@@ -20,17 +20,30 @@ npm install meteor-e-invoice
 ### Import
 Import the package in your meteor application:
 ```javascript
-import { EInvoice } from 'meteor/e-invoice';
+import { EInvoice, addXmlData } from 'meteor/e-invoice';
 ```
 
 ### Create an invoice object
+```javascript
+// similar to this
+var invoice = EInvoiceSchema.clean({});
 
+// add xml data to the invoice object
+invoice = addXmlData("EInvoiceSchema", invoice);
+```
 
 ### Convert it to an XML string
+```javascript
+// run the conversion
+// if there are errors they will be shown as result.error
+const result = eInvoiceToXml(invoice);
+
+const xmlString = result.xml;
+```
 
 # Credits
 
 ## Example E-Invoices
 |name|origin|
 |---|---|
-|[example-invoice.json](https://github.com/Nasenboi/meteor-e-invoice/blob/main/tests/test-objects/example-invoice.json)|https://github.com/jcthiele/OpenXRechnungToolbox/|
+|[example-invoice.json](https://github.com/Nasenboi/meteor-e-invoice/blob/main/tests/test-objects/example-invoice.json)|[OpenXRechnungToolbox](https://github.com/jcthiele/OpenXRechnungToolbox/blob/master/exampleInvoices/XRechnung_v3.0.2/01.01a-INVOICE_ubl.xml)|
