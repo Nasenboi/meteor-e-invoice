@@ -1,68 +1,147 @@
 {
-  "ID": "INV-123",
-  "issue_date": "2020-01-01",
-  "due_date": "2020-01-31",
+  "ID": "123456XX",
+  "issue_date": "2016-04-04",
   "invoice_type_code": "380",
-  "invoice_currency_code": "EUR",
-  "order_reference": {
-    "id": "INV-123"
-  },
+  "note": "#ADU#Es gelten unsere Allgem. Geschäftsbedingungen, die Sie unter […] finden.",
+  "document_currency_code": "EUR",
+  "buyer_reference": "04011000-12345-03",
   "accounting_supplier_party": {
     "party": {
-      "endpoint_id": "123456789",
-      "party_name": {"name": "Supplier Company"},
+      "endpoint_id": "seller@email.de",
+      "party_name": {"name": "[Seller trading name]"},
       "postal_address": {
-        "street_name": "123 Main St",
-        "city_name": "Anytown",
+        "street_name": "[Seller address line 1]",
+        "city_name": "[Seller city]",
         "postal_zone": "12345",
         "country": {
           "identification_code": "DE"
         }
+      },
+      "party_tax_scheme": [{
+        "company_id": "DE 123456789",
+        "tax_scheme": {
+          "id": "VAT"
+        }
+      }],
+      "party_legal_entity": {
+        "registration_name": "[Seller name]",
+        "company_id": "[HRA-Eintrag]",
+        "company_legal_form": "123/456/7890, HRA-Eintrag in [...]"
+      },
+      "contact": {
+        "name": "nicht vorhanden",
+        "telephone": "+49 134-5678",
+        "electronic_mail": "seller@email.de"
       }
     }
   },
   "accounting_customer_party": {
     "party": {
-      "endpoint_id": "987654321",
-      "party_name": {"name": "Customer Company"},
+      "endpoint_id": "buyer@info.de",
+      "party_identification": {
+        "id": "Buyer identifier"
+      },
       "postal_address": {
-        "street_name": "456 Elm St",
-        "city_name": "Othertown",
-        "postal_zone": "54321",
+        "street_name": "[Buyer address line 1]",
+        "city_name": "[Buyer city]",
+        "postal_zone": "12345",
         "country": {
           "identification_code": "DE"
         }
+      },
+      "party_legal_entity": {
+        "registration_name": "[Buyer name]"
       }
     }
   },
   "payment_means": {
-    "payment_means_code": "1"
+    "payment_means_code": "58",
+    "payee_financial_account": {
+      "id": "DE75512108001245126199"
+    }
   },
   "payment_terms": {
-    "note": "Please pay"
+    "note": "Zahlbar sofort ohne Abzug."
   },
   "tax_total": {
-    "tax_amount": 0.0
+    "tax_amount": 22.04,
+    "currency_id": "EUR",
+    "tax_subtotal": [{
+      "taxable_amount": 314.86,
+      "tax_amount": 22.04,
+      "tax_category": {
+        "id": "S",
+        "percent": 7,
+        "tax_scheme": {
+          "id": "VAT"
+        }
+      },
+      "currency_id": "EUR"
+    }]
   },
   "legal_monetary_total": {
-    "line_extension_amount": 100.0,
-    "tax_exclusive_amount": 100.0,
-    "tax_inclusive_amount": 100.0,
-    "prepaid_amount": 0.0,
-    "payable_amount": 100.0,
+    "line_extension_amount": 314.86,
+    "tax_exclusive_amount": 314.86,
+    "tax_inclusive_amount": 336.9,
+    "payable_amount": 336.9,
     "currency_id": "EUR"
   },
   "invoice_line": [
     {
-      "id": "1",
+      "id": "Zeitschrift [...]",
+      "note": "Die letzte Lieferung im Rahmen des abgerechneten Abonnements erfolgt in 12/2016 Lieferung erfolgt / erfolgte direkt vom Verlag",
       "invoice_line_quantity": 1.0,
-      "line_extension_amount": 100.0,
+      "unit_code": "XPP",
+      "line_extension_amount": 288.79,
+      "invoice_period": {
+        "start_date": "2016-01-01",
+        "end_date": "2016-12-31"
+      },
+      "order_line_reference": {
+        "line_id": "6171175.1"
+      },
       "item": {
-        "name": "Test Item",
-        "description": "This is a test item"
+        "name": "Zeitschrift [...]",
+        "description": "Zeitschrift Inland",
+        "sellers_item_identification": {
+          "id": "246"
+        },
+        "commodity_classification": {
+          "item_classification_code": "0721-880X",
+          "list_id": "IB"
+        },
+        "classified_tax_category": {
+          "id": "S",
+          "percent": 7,
+          "tax_scheme": {
+            "id": "VAT"
+          }
+        }
       },
       "price": {
-        "price_amount": 100.0
+        "price_amount": 288.79,
+        "currency_id": "EUR"
+      },
+      "currency_id": "EUR"
+    },
+    {
+      "id": "Porto + Versandkosten",
+      "invoice_line_quantity": 1.0,
+      "unit_code": "XPP",
+      "line_extension_amount": 26.07,
+      "item": {
+        "name": "Porto + Versandkosten",
+        "classified_tax_category": {
+          "id": "S",
+          "percent": 7,
+          "tax_scheme": {
+            "id": "VAT"
+          }
+        }
+      },
+      "price": {
+        "price_amount": 26.07,
+        "currency_id": "EUR"
       },
       "currency_id": "EUR"
     }
