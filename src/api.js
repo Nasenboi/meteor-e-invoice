@@ -78,6 +78,6 @@ export function eInvoiceToXml(eInvoice) {
     // Return results based on validation outcome
     return {success: true, xml: xmlString};
   } catch (error) {
-    return {success: false, error};
+    return {success: false, error: error, xml: null};
   }
 }
