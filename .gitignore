@@ -138,8 +138,8 @@ dist
 .pnp.*
 
 # test files
-tests/test-objects/*.xml
-tests/test-objects/*.pdf
+tests/test-objects/xml/*.xml
+tests/test-objects/pdf/*.pdf
 
 # macOS
 .DS_Store
