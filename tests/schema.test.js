@@ -64,6 +64,8 @@ describe("xml eInvoice", () => {
 
 describe("ZUGFeRD", () => {
   it("create pdf", async () => {
-    await Promise.all(test_invoices.map(createEInvoicePdf));
+    for (const invoice of test_invoices) {
+      await createEInvoicePdf(invoice);
+    }
   });
 });
