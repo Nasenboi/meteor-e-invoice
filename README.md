@@ -49,4 +49,4 @@ const xmlString = result.xml;
 ## Example E-Invoices
 |name|origin|
 |---|---|
-|[example-invoice.json](https://github.com/Nasenboi/meteor-e-invoice/blob/main/tests/test-objects/example-invoice.json)|[OpenXRechnungToolbox](https://github.com/jcthiele/OpenXRechnungToolbox/blob/master/exampleInvoices/XRechnung_v3.0.2/01.01a-INVOICE_ubl.xml)|
+|[example-invoice-01.json](https://github.com/Nasenboi/meteor-e-invoice/blob/main/tests/test-objects/example-invoice.json)|[OpenXRechnungToolbox](https://github.com/jcthiele/OpenXRechnungToolbox/blob/master/exampleInvoices/XRechnung_v3.0.2/01.01a-INVOICE_ubl.xml)|
