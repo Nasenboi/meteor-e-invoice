@@ -115,6 +115,17 @@ export function createPdf(invoiceData, path) {
     writerY += line_heights.normal;
   });
 
+  // Add XMP metadata
+  const xmpMetadata = `
+    <rdf:Description rdf:about="" xmlns:zf="urn:ferd:pdfa:invoice:rc#">
+      <zf:DocumentType>INVOICE</zf:DocumentType>
+      <zf:DocumentFileName>ZUGFeRD-invoice.xml</zf:DocumentFileName>
+      <zf:Version>1.0</zf:Version>
+      <zf:ConformanceLevel>BASIC</zf:ConformanceLevel>
+    </rdf:Description>`;
+
+  doc.addMetadata(xmpMetadata);
+  
   // Save the PDF
   doc.save(path);
 }
