@@ -1,7 +1,7 @@
 import xmlbuilder from "xmlbuilder";
 import addXmlData from "./xml-parser";
-import { createPdf } from "./pdf-generator";
-import { PDFDocument } from "pdf-lib";
+import {createPdf} from "./pdf-generator";
+import {PDFDocument} from "pdf-lib";
 import fs from "fs";
 
 export const EINVOICE_CUSTUMIZATION_ID =
@@ -90,21 +90,21 @@ export function eInvoiceToXml(eInvoice) {
 
 // function to embed an xml string into an existing pdf
 export async function embedXMLInPDF(pdf, xmlString) {
-    const pdfDoc = await PDFDocument.load(pdf);
+  const pdfDoc = await PDFDocument.load(pdf);
 
-    // Embed the ZUGFeRD XML as a file attachment
-    const xmlAttachmentName = 'ZUGFeRD-invoice.xml';
-    const xmlBytes = Buffer.from(xmlString, 'utf8');
+  // Embed the ZUGFeRD XML as a file attachment
+  const xmlAttachmentName = "ZUGFeRD-invoice.xml";
+  const xmlBytes = Buffer.from(xmlString, "utf8");
 
-    await pdfDoc.attach(xmlBytes, xmlAttachmentName, {
-        mimeType: 'application/xml',
-        description: 'ZUGFeRD XML Invoice for electronic processing',
-        creationDate: new Date(),
-        modificationDate: new Date()
-    });
+  await pdfDoc.attach(xmlBytes, xmlAttachmentName, {
+    mimeType: "application/xml",
+    description: "ZUGFeRD XML Invoice for electronic processing",
+    creationDate: new Date(),
+    modificationDate: new Date(),
+  });
 
-    const pdfDocWithAttachedXml = await pdfDoc.save();
-    return Buffer.from(pdfDocWithAttachedXml.buffer);
+  const pdfDocWithAttachedXml = await pdfDoc.save();
+  return Buffer.from(pdfDocWithAttachedXml.buffer);
 }
 
 // function to create a new pdf according to the ZUGFeRD standard
